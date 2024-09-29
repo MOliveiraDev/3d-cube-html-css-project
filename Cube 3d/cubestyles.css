@@ -1,6 +1,65 @@
 body {
+  margin: 0;
+  background: #000; /* Fundo preto */
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  position: relative;
+  perspective: 1000px;
+}
+
+.glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(9, 173, 200, 0.5); 
+    border-radius: 50%;
+    box-shadow: 0 0 150px 50px rgba(9, 173, 200, 0.9); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+    transition: opacity 2.0s ease;
+    pointer-events: none;
+  }
+  
+
+.cube {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: rotate 6s linear infinite;
+}
+
+.cube > div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.9;
+  background: linear-gradient(to right, #09adc8, #001f4e);
+}
+
+.s1 { transform: translateZ(100px); }
+.s2 { transform: rotateY(90deg) translateZ(100px); }
+.s3 { transform: rotateY(180deg) translateZ(100px); }
+.s4 { transform: rotateX(90deg) translateZ(100px); }
+.s5 { transform: rotateY(-90deg) translateZ(100px); }
+.s6 { transform: rotateX(-90deg) translateZ(100px) rotate(180deg); }
+
+@keyframes rotate {
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.container:hover .glow {
+  opacity: 3; /* Ativa o brilho ao passar o mouse */
+}
+body {
     margin: 0;
-    background: #000;
+    background: #000; /* Fundo preto */
     height: 100vh;
     display: grid;
     place-items: center;
@@ -8,31 +67,29 @@ body {
   
   .container {
     position: relative;
-    perspective: 1000px; /* Perspectiva 3D */
-    perspective-origin: 50% 50%;
+    perspective: 1000px;
   }
   
-  /* Brilho separado do cubo, começa invisível */
   .glow {
     position: absolute;
     width: 300px;
     height: 300px;
-    background: rgba(9, 173, 200, 0.3); /* Cor do brilho */
-    border-radius: 50%; /* Forma circular */
-    box-shadow: 0 0 100px 50px rgba(9, 173, 200, 0.7); /* Brilho ao redor */
+    background: rgba(9, 173, 200, 0.3);
+    border-radius: 50%;
+    box-shadow: 0 0 100px 0 rgba(9, 173, 200, 0.7); /* Ajuste: sem a borda escura */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centralizando o brilho em relação ao cubo */
-    opacity: 0; /* Começa invisível */
-    transition: opacity 0.5s ease; /* Transição suave */
-    pointer-events: none; /* Impede interação com o brilho */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
   }
   
   .cube {
     position: relative;
     width: 200px;
     height: 200px;
-    transform-style: preserve-3d; /* Mantém o efeito 3D */
+    transform-style: preserve-3d;
     animation: rotate 6s linear infinite;
   }
   
@@ -42,7 +99,6 @@ body {
     height: 200px;
     opacity: 0.9;
     background: linear-gradient(to right, #09adc8, #001f4e);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Adicionando bordas para facilitar a percepção do cubo 3D */
   }
   
   .s1 { transform: translateZ(100px); }
@@ -53,13 +109,12 @@ body {
   .s6 { transform: rotateX(-90deg) translateZ(100px) rotate(180deg); }
   
   @keyframes rotate {
-    100% {
-      transform: rotateX(360deg) rotateY(360deg);
-    }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
   }
   
-  /* Efeito de brilho ao redor do cubo ao passar o mouse */
-  .cube:hover + .glow {
-    opacity: 1; /* Torna o brilho visível ao passar o mouse sobre o cubo */
+  .container:hover .glow {
+    opacity: 1; /* Ativa o brilho ao passar o mouse */
   }
+
+  
   
