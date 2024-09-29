@@ -7,15 +7,32 @@ body {
   }
   
   .container {
-    perspective: 1000px;
-    perspective-origin: 100% 100%;
+    position: relative;
+    perspective: 1000px; /* Perspectiva 3D */
+    perspective-origin: 50% 50%;
+  }
+  
+  /* Brilho separado do cubo, começa invisível */
+  .glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(9, 173, 200, 0.3); /* Cor do brilho */
+    border-radius: 50%; /* Forma circular */
+    box-shadow: 0 0 100px 50px rgba(9, 173, 200, 0.7); /* Brilho ao redor */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centralizando o brilho em relação ao cubo */
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.5s ease; /* Transição suave */
+    pointer-events: none; /* Impede interação com o brilho */
   }
   
   .cube {
     position: relative;
     width: 200px;
     height: 200px;
-    transform-style: preserve-3d;
+    transform-style: preserve-3d; /* Mantém o efeito 3D */
     animation: rotate 6s linear infinite;
   }
   
@@ -25,35 +42,24 @@ body {
     height: 200px;
     opacity: 0.9;
     background: linear-gradient(to right, #09adc8, #001f4e);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adicionando bordas para facilitar a percepção do cubo 3D */
   }
   
-  .s1 {
-    transform: translateZ(100px);
-  }
-  
-  .s2 {
-    transform: rotateY(90deg) translateZ(100px);
-  }
-  
-  .s3 {
-    transform: rotateY(180deg) translateZ(100px);
-  }
-  
-  .s4 {
-    transform: rotateX(90deg) translateZ(100px);
-  }
-  
-  .s5 {
-    transform: rotateY(-90deg) translateZ(100px);
-  }
-  
-  .s6 {
-    transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
-  }
+  .s1 { transform: translateZ(100px); }
+  .s2 { transform: rotateY(90deg) translateZ(100px); }
+  .s3 { transform: rotateY(180deg) translateZ(100px); }
+  .s4 { transform: rotateX(90deg) translateZ(100px); }
+  .s5 { transform: rotateY(-90deg) translateZ(100px); }
+  .s6 { transform: rotateX(-90deg) translateZ(100px) rotate(180deg); }
   
   @keyframes rotate {
     100% {
-      transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+      transform: rotateX(360deg) rotateY(360deg);
     }
+  }
+  
+  /* Efeito de brilho ao redor do cubo ao passar o mouse */
+  .cube:hover + .glow {
+    opacity: 1; /* Torna o brilho visível ao passar o mouse sobre o cubo */
   }
   
