@@ -116,5 +116,24 @@ body {
     opacity: 1; /* Ativa o brilho ao passar o mouse */
   }
 
+  .text {
+    position: absolute;
+    color: #0385ff;
+    font-size: 24px;
+    text-align: center;
+    top: -110%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+        transition: transform 0.3s ease, font-size 0.3s ease; /* Transição suave */
+}
+
+.container:hover .text {
+    transform: translate(-50%, -50%) scale(1.2); /* Aumenta o tamanho do texto */
+}
+
+
+
   
   
